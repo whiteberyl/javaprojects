@@ -25,7 +25,7 @@ int number = 0; //Make something like int num = 0 and like if num != 5 loop
       continue;
    }     
  number = input.nextInt();
-   input.nextLine(); // input flushing
+ input.nextLine(); // input flushing
 
    if (number < 1 || number > 5) { //if valid input checking
       System.out.println("Error, invalid option, try again.");
@@ -74,9 +74,7 @@ if (number == 4) {
    }
    while (rheight == 0); {
       rheight = generator.nextInt(7); // 1-6
-   }
-      
-
+   }      
       for (int i = 0; i < rheight; i++) {       
          for (int j = 0; j < rwidth; j++) { 
              System.out.print("* ");
