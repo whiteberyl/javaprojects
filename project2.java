@@ -7,8 +7,12 @@ public class project2 {
          Scanner input = new Scanner(System.in);
          Random generator = new Random();
          
+//Make something like int num = 0 and like if num != 5 loop 
+
+int number = 0;
+   while (number != 5) {       
 // Menu
-   System.out.println("Select an option: \n1) Print a rectangle");
+   System.out.println("Select an option:");
    System.out.println("1) Print a rectangle"); // width 7 height 5 
    System.out.println("2) Print a downwards right triangle"); //width && height = 6
    System.out.println("3) Print an upwards right triangle"); // width && height = 6
@@ -22,13 +26,14 @@ public class project2 {
       System.exit(0);
    }     
 
-   int number = input.nextInt();
+   number = input.nextInt();
    input.nextLine(); // input flushing
 
    if (number < 1 || number > 5) { //if valid input checking
       System.out.println("Error, invalid option, try again.");
       System.exit(0);
    }  
+   
 //Calculation
 //Square
 if (number == 1) {  
@@ -39,8 +44,8 @@ if (number == 1) {
          System.out.println();
    }
    }
- //down triangle
- if (number == 2) {
+ //down triangle 6 
+ if (number == 2) {  
    for (int i = 0; i < 6; i++) {
       for (int j = 0; j <= i; j++) {
          System.out.print("* ");
@@ -49,7 +54,7 @@ if (number == 1) {
    }
    
    }
-//Up triangle
+//Up triangle 6
 if (number == 3) {
    for (int i = 5; i >= 0; i--) {
       for (int j = 0; j <= i; j++) {
@@ -71,9 +76,8 @@ if (number == 4) {
    }
 if (number == 5) {
    System.out.println("Goodbye.");
-   System.exit(0);
-}      
+   System.exit(0);     
+  }
   
+ 
 //Output
-   } 
-} 
