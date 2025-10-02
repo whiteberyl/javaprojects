@@ -12,7 +12,7 @@ public class project2 {
 int number = 0;
    while (number != 5) {       
 // Menu
-   System.out.println("Select an option:");
+   System.out.println("Select an option:"); 
    System.out.println("1) Print a rectangle"); // width 7 height 5 
    System.out.println("2) Print a downwards right triangle"); //width && height = 6
    System.out.println("3) Print an upwards right triangle"); // width && height = 6
@@ -23,7 +23,7 @@ int number = 0;
    System.out.println("Enter a number:");
    if (!input.hasNextInt()) { //data type check
       System.out.println("Error, invalid option, try again.");
-      System.exit(0);
+      continue;
    }     
 
    number = input.nextInt();
@@ -31,7 +31,8 @@ int number = 0;
 
    if (number < 1 || number > 5) { //if valid input checking
       System.out.println("Error, invalid option, try again.");
-      System.exit(0);
+      System.out.println();
+      continue;
    }  
    
 //Calculation
@@ -41,7 +42,7 @@ if (number == 1) {
          for (int j = 0; j < 7; j++) {     // width = 7 columns
              System.out.print("* ");
    }
-         System.out.println();
+      System.out.println();
    }
    }
  //down triangle 6 
@@ -64,10 +65,19 @@ if (number == 3) {
    }
    
    }
-int rwidth = generator.nextInt(11);
+int rwidth = generator.nextInt(11); // keep rerolling
 int rheight = generator.nextInt(7);
+
 if (number == 4) {  
-      for (int i = 0; i < rheight; i++) {        
+   while (rwidth < 2); {
+      rwidth = generator.nextInt(11);
+   }
+   while (rheight == 0); {
+      rheight = generator.nextInt(7);
+   }
+      
+
+      for (int i = 0; i < rheight; i++) {       
          for (int j = 0; j < rwidth; j++) { 
              System.out.print("* ");
    }
@@ -78,6 +88,8 @@ if (number == 5) {
    System.out.println("Goodbye.");
    System.exit(0);     
   }
-  
+  }
+  }
+  }
  
 //Output
