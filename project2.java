@@ -23,9 +23,9 @@ int number = 0; //Make something like int num = 0 and like if num != 5 loop
 
 if (input.hasNextInt()) {
     number = input.nextInt();   
-} else {
-    number = 0;                
-    input.next();               
+   } else {
+       number = 0;                
+       input.next();               
 }
 if (number < 1 || number > 5) {
     System.out.println("Error, invalid option, try again.\n");
