@@ -56,16 +56,6 @@ if (number == 1) {  //square
          System.out.println();
       }  
    }
-      /* 
-      honestly i was gonna reroll until it doesnt equal the values
-      int rwidth = generator.nextInt(11); 
-         while (rwidth < 2) { 
-            rwidth = generator.nextInt(11); 
-      } 
-      int rheight = generator.nextInt(7);
-         while (rheight == 0) { 
-            rheight = generator.nextInt(7);
-      */
    else if (number == 4) {  //random
       int rwidth = generator.nextInt(9) + 2; //+2 because hits 0-1
       int rheight = generator.nextInt(6) + 1; // +1 because hits 0 
@@ -83,5 +73,5 @@ if (number == 1) {  //square
      System.out.println(); //extra credit
         }
       }
-   } // I love you if loops <3 #awesomesauce2025 #yourenotanothingburger
+   } 
 }
