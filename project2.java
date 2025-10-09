@@ -8,15 +8,15 @@ public class project2 {
          Random generator = new Random();
          
 //Main Loop
-int number = 0; //Make something like int num = 0 and like if num != 5 loop 
+int number = 0; 
    while (number != 5) {       
 // Menu
-   System.out.println("Select an option:");  // i didnt want to use /n because it was too long
+   System.out.println("Select an option:");  
    System.out.println("1) Print a rectangle"); // width 7 height 5 
    System.out.println("2) Print a downwards right triangle"); //width && height = 6
    System.out.println("3) Print an upwards right triangle"); // width && height = 6
    System.out.println("4) Print a random rectangle"); // random rectangle  width 2-10 height 1-6
-   System.out.println("5) Exit"); // exits  System.exit(0); "goodbye"
+   System.out.println("5) Exit"); // exits  
  
  //INPUT 
  System.out.println("Enter a number:");
