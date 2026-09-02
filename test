@@ -1,0 +1,1767 @@
+# COMP 182 FULL JAVA CODE EXAMPLES WITH DETAILED COMMENTS
+
+# 1. Rectangle — Classes, Objects, Constructors, Getters, Setters, `this`
+
+```java
+public class RectangleExample {
+
+    // main() is where Java starts running the program
+    public static void main(String[] args) {
+
+        // Creates a new Rectangle object.
+        //
+        // Rectangle = the class/type
+        // r1 = reference variable that refers to the Rectangle object
+        // new = tells Java to create a new object
+        // Rectangle(5, 3) = calls the constructor
+        // 5 = argument for length
+        // 3 = argument for width
+        Rectangle r1 = new Rectangle(5, 3);
+
+
+        // Calls the getLength() method on r1.
+        // getLength() returns the value stored in the length data field.
+        System.out.println("Length: " + r1.getLength());
+
+
+        // Calls the getWidth() method on r1.
+        System.out.println("Width: " + r1.getWidth());
+
+
+        // Calls getArea().
+        // The method calculates length * width and returns the result.
+        System.out.println("Area: " + r1.getArea());
+
+
+        // Calls getPerimeter().
+        // The method calculates 2 * (length + width).
+        System.out.println("Perimeter: " + r1.getPerimeter());
+
+
+        // Calls the setter and changes r1's length from 5 to 10.
+        //
+        // The 10 gets passed into the parameter:
+        // setLength(double length)
+        r1.setLength(10);
+
+
+        // Since we changed the length to 10,
+        // the area is now:
+        //
+        // 10 * 3 = 30
+        System.out.println("New Area: " + r1.getArea());
+    }
+}
+
+
+// This is the Rectangle class.
+//
+// A class is a BLUEPRINT for creating objects.
+//
+// Every Rectangle object created from this class
+// can have its own length and width.
+class Rectangle {
+
+    // DATA FIELDS
+    //
+    // These variables store information about each Rectangle object.
+    //
+    // private means these variables should only be accessed
+    // directly from inside the Rectangle class.
+    private double length;
+    private double width;
+
+
+    // NO-ARGUMENT CONSTRUCTOR
+    //
+    // A constructor has:
+    // 1. The SAME name as the class
+    // 2. NO return type, not even void
+    //
+    // This constructor runs when we write:
+    //
+    // Rectangle r = new Rectangle();
+    public Rectangle() {
+
+        // Give the Rectangle default values.
+        length = 1;
+        width = 1;
+    }
+
+
+    // CONSTRUCTOR WITH PARAMETERS
+    //
+    // This constructor allows us to provide a length and width
+    // when creating the object.
+    //
+    // Example:
+    //
+    // Rectangle r = new Rectangle(5, 3);
+    //
+    // length parameter receives 5
+    // width parameter receives 3
+    public Rectangle(double length, double width) {
+
+        // this.length means:
+        // "the length data field belonging to THIS object"
+        //
+        // length by itself means:
+        // "the parameter that was passed into this constructor"
+        //
+        // So if we called:
+        //
+        // new Rectangle(5, 3)
+        //
+        // this.length becomes 5.
+        this.length = length;
+
+        // Same idea:
+        //
+        // object's width = width parameter
+        this.width = width;
+    }
+
+
+    // GETTER METHOD
+    //
+    // A getter allows code outside the class to READ
+    // a private data field.
+    //
+    // double means this method RETURNS a double.
+    public double getLength() {
+
+        // Return the object's current length.
+        return length;
+    }
+
+
+    // SETTER METHOD
+    //
+    // A setter allows code outside the class to CHANGE
+    // a private data field.
+    //
+    // void means the method does NOT return anything.
+    public void setLength(double length) {
+
+        // Change this object's length to the value
+        // passed into the method.
+        this.length = length;
+    }
+
+
+    // Getter for width.
+    public double getWidth() {
+        return width;
+    }
+
+
+    // Setter for width.
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+
+    // Calculates and RETURNS the area.
+    public double getArea() {
+
+        // Area of rectangle:
+        //
+        // length * width
+        return length * width;
+    }
+
+
+    // Calculates and RETURNS the perimeter.
+    public double getPerimeter() {
+
+        // Perimeter:
+        //
+        // 2(length + width)
+        return 2 * (length + width);
+    }
+}
+```
+
+---
+
+# 2. Rational Class — VERY IMPORTANT
+
+```java
+public class RationalExample {
+
+    public static void main(String[] args) {
+
+        // Create a Rational object representing:
+        //
+        // 5
+        // -
+        // 2
+        //
+        // r1 is the reference variable.
+        Rational r1 = new Rational(5, 2);
+
+
+        // Create another Rational object representing:
+        //
+        // 7
+        // -
+        // 3
+        Rational r2 = new Rational(7, 3);
+
+
+        // Call the add() method using r1.
+        //
+        // VERY IMPORTANT:
+        //
+        // r1.add(r2)
+        //
+        // Inside the add() method:
+        //
+        // this = r1
+        // r    = r2
+        //
+        // The add() method creates and returns
+        // a NEW Rational object.
+        Rational r3 = r1.add(r2);
+
+
+        // Because Rational has a toString() method,
+        // Java knows how we want a Rational object displayed.
+        System.out.println("r1 = " + r1);
+        System.out.println("r2 = " + r2);
+        System.out.println("r3 = " + r3);
+    }
+}
+
+
+class Rational {
+
+    // Each Rational object stores:
+    //
+    // numerator
+    // -----------
+    // denominator
+    //
+    // Example:
+    //
+    // 5/2
+    //
+    // numerator = 5
+    // denominator = 2
+    private int numerator;
+    private int denominator;
+
+
+    // Constructor.
+    //
+    // Example:
+    //
+    // new Rational(5, 2)
+    //
+    // numerator parameter receives 5
+    // denominator parameter receives 2
+    public Rational(int numerator, int denominator) {
+
+        // Store the numerator parameter
+        // inside THIS Rational object.
+        this.numerator = numerator;
+
+        // Store the denominator parameter
+        // inside THIS Rational object.
+        this.denominator = denominator;
+    }
+
+
+    // Getter for numerator.
+    public int getNumerator() {
+        return numerator;
+    }
+
+
+    // Getter for denominator.
+    public int getDenominator() {
+        return denominator;
+    }
+
+
+    // This method adds THIS Rational object
+    // to another Rational object called r.
+    //
+    // Notice the return type is Rational.
+    //
+    // That means this method RETURNS
+    // a Rational object.
+    public Rational add(Rational r) {
+
+        // Imagine we called:
+        //
+        // r1.add(r2)
+        //
+        // where:
+        //
+        // r1 = 5/2
+        // r2 = 7/3
+        //
+        // Inside THIS method:
+        //
+        // this = r1 = 5/2
+        // r    = r2 = 7/3
+
+
+        // Formula for adding fractions:
+        //
+        // a/b + c/d
+        //
+        // numerator:
+        //
+        // (a * d) + (b * c)
+        //
+        // For:
+        //
+        // 5/2 + 7/3
+        //
+        // (5 * 3) + (2 * 7)
+        //
+        // 15 + 14
+        //
+        // = 29
+        int n =
+            this.numerator * r.denominator
+            +
+            this.denominator * r.numerator;
+
+
+        // New denominator:
+        //
+        // b * d
+        //
+        // 2 * 3
+        //
+        // = 6
+        int d =
+            this.denominator * r.denominator;
+
+
+        // Create a NEW Rational object.
+        //
+        // n = 29
+        // d = 6
+        //
+        // So this returns:
+        //
+        // new Rational(29, 6)
+        return new Rational(n, d);
+    }
+
+
+    // toString() determines how the object
+    // should look when converted to a String.
+    //
+    // Without our own toString(), printing an object
+    // may display something that looks like:
+    //
+    // Rational@6d06d69c
+    //
+    // Instead, we want:
+    //
+    // 5/2
+    public String toString() {
+
+        return numerator + "/" + denominator;
+    }
+}
+```
+
+### Rational Shortcut
+
+```text
+r1.add(r2)
+
+this = r1
+r    = r2
+```
+
+If:
+
+```text
+r1 = 5/2
+r2 = 7/3
+```
+
+then:
+
+```text
+this.numerator   = 5
+this.denominator = 2
+
+r.numerator      = 7
+r.denominator    = 3
+```
+
+---
+
+# 3. Inheritance — GeometricObject, Circle, Rectangle
+
+```java
+public class TestGeometricObject {
+
+    public static void main(String[] args) {
+
+        // Create a Circle object with radius 5.
+        Circle circle = new Circle(5);
+
+
+        // Create a Rectangle object.
+        //
+        // width = 4
+        // height = 6
+        Rectangle rectangle = new Rectangle(4, 6);
+
+
+        // Circle does NOT directly contain setColor().
+        //
+        // However, Circle EXTENDS GeometricObject.
+        //
+        // Therefore Circle inherits the public
+        // setColor() method from GeometricObject.
+        circle.setColor("Red");
+
+
+        // Rectangle also extends GeometricObject,
+        // so Rectangle can also use setColor().
+        rectangle.setColor("Blue");
+
+
+        System.out.println("CIRCLE");
+
+        // getColor() was inherited from GeometricObject.
+        System.out.println("Color: " + circle.getColor());
+
+        // getArea() belongs to Circle.
+        System.out.println("Area: " + circle.getArea());
+
+
+        System.out.println();
+
+
+        System.out.println("RECTANGLE");
+
+        // Inherited from GeometricObject.
+        System.out.println("Color: " + rectangle.getColor());
+
+        // Defined inside Rectangle.
+        System.out.println("Area: " + rectangle.getArea());
+    }
+}
+
+
+// SUPERCLASS / PARENT CLASS
+//
+// Circle and Rectangle will inherit from this class.
+class GeometricObject {
+
+    // Private data field.
+    //
+    // Since it is private, subclasses cannot
+    // directly access color.
+    //
+    // They can still use the public
+    // getter and setter.
+    private String color;
+
+
+    // Constructor for GeometricObject.
+    public GeometricObject() {
+
+        // Default color.
+        color = "White";
+    }
+
+
+    // Getter.
+    public String getColor() {
+        return color;
+    }
+
+
+    // Setter.
+    public void setColor(String color) {
+
+        // this.color = object's data field
+        //
+        // color = parameter
+        this.color = color;
+    }
+}
+
+
+// SUBCLASS / CHILD CLASS
+//
+// "extends GeometricObject" creates inheritance.
+//
+// Circle IS-A GeometricObject.
+class Circle extends GeometricObject {
+
+    // Data specifically needed by Circle.
+    private double radius;
+
+
+    // Circle constructor.
+    public Circle(double radius) {
+
+        this.radius = radius;
+    }
+
+
+    // Calculate circle area.
+    public double getArea() {
+
+        // Formula:
+        //
+        // πr²
+        return Math.PI * radius * radius;
+    }
+}
+
+
+// SUBCLASS / CHILD CLASS
+//
+// Rectangle IS-A GeometricObject.
+class Rectangle extends GeometricObject {
+
+    private double width;
+    private double height;
+
+
+    public Rectangle(double width, double height) {
+
+        this.width = width;
+        this.height = height;
+    }
+
+
+    public double getArea() {
+
+        return width * height;
+    }
+}
+```
+
+### Inheritance Structure
+
+```text
+             GeometricObject
+             SUPERCLASS
+             /        \
+            /          \
+       Circle        Rectangle
+      SUBCLASS       SUBCLASS
+```
+
+Remember:
+
+```java
+class Circle extends GeometricObject
+```
+
+means:
+
+```text
+Circle IS-A GeometricObject
+```
+
+---
+
+# 4. `super` — Calling the Parent Constructor
+
+```java
+public class SuperExample {
+
+    public static void main(String[] args) {
+
+        // Create a Rectangle.
+        Rectangle r1 = new Rectangle("Blue", 5, 10);
+
+        System.out.println("Color: " + r1.getColor());
+        System.out.println("Area: " + r1.getArea());
+    }
+}
+
+
+class GeometricObject {
+
+    private String color;
+
+
+    // Parent/superclass constructor.
+    public GeometricObject(String color) {
+
+        // Store the color in the GeometricObject part
+        // of the object.
+        this.color = color;
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+}
+
+
+class Rectangle extends GeometricObject {
+
+    private double width;
+    private double height;
+
+
+    public Rectangle(
+        String color,
+        double width,
+        double height
+    ) {
+
+        // super refers to the SUPERCLASS.
+        //
+        // Rectangle's superclass is GeometricObject.
+        //
+        // Therefore:
+        //
+        // super(color)
+        //
+        // calls:
+        //
+        // GeometricObject(color)
+        //
+        // If color = "Blue", this essentially calls:
+        //
+        // GeometricObject("Blue")
+        //
+        // A call to super(...) must be the first
+        // statement in the constructor.
+        super(color);
+
+
+        // These fields belong to Rectangle.
+        this.width = width;
+        this.height = height;
+    }
+
+
+    public double getArea() {
+        return width * height;
+    }
+}
+```
+
+### Remember
+
+```text
+this  → current object
+
+super → superclass / parent
+```
+
+---
+
+# 5. Abstract Class
+
+```java
+public class AbstractExample {
+
+    public static void main(String[] args) {
+
+        // We CAN create a Circle because Circle
+        // is not abstract.
+        Circle c1 = new Circle(5);
+
+
+        // We CAN create a Rectangle because
+        // Rectangle is not abstract.
+        Rectangle r1 = new Rectangle(4, 6);
+
+
+        System.out.println(
+            "Circle area: " + c1.getArea()
+        );
+
+
+        System.out.println(
+            "Rectangle area: " + r1.getArea()
+        );
+
+
+        // THIS WOULD NOT WORK:
+        //
+        // GeometricObject g =
+        //     new GeometricObject();
+        //
+        // Why?
+        //
+        // Because GeometricObject is ABSTRACT.
+        // An abstract class cannot be directly instantiated.
+    }
+}
+
+
+// "abstract" means this class is designed
+// to serve as a superclass.
+//
+// Other classes can EXTEND it.
+abstract class GeometricObject {
+
+    private String color;
+
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+
+
+    // ABSTRACT METHOD
+    //
+    // Notice:
+    //
+    // 1. It uses the word abstract
+    // 2. It has NO method body { }
+    // 3. It ends with ;
+    //
+    // GeometricObject is basically saying:
+    //
+    // "Every concrete subclass must know
+    // how to calculate its area."
+    //
+    // But GeometricObject itself does not know
+    // the formula because different shapes
+    // have different area formulas.
+    public abstract double getArea();
+}
+
+
+class Circle extends GeometricObject {
+
+    private double radius;
+
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+
+    // Circle provides its own implementation
+    // of the inherited abstract getArea() method.
+    public double getArea() {
+
+        return Math.PI * radius * radius;
+    }
+}
+
+
+class Rectangle extends GeometricObject {
+
+    private double width;
+    private double height;
+
+
+    public Rectangle(double width, double height) {
+
+        this.width = width;
+        this.height = height;
+    }
+
+
+    // Rectangle provides its own version
+    // of getArea().
+    public double getArea() {
+
+        return width * height;
+    }
+}
+```
+
+### Abstract Class Rule
+
+```java
+abstract class GeometricObject
+```
+
+You CANNOT do:
+
+```java
+new GeometricObject();
+```
+
+But you CAN do:
+
+```java
+new Circle(5);
+new Rectangle(4, 6);
+```
+
+---
+
+# 6. Interface Example
+
+```java
+public class InterfaceExample {
+
+    public static void main(String[] args) {
+
+        // Create a Dog object.
+        Dog dog = new Dog();
+
+
+        // Dog has makeSound() because Dog
+        // implements the Animal interface.
+        dog.makeSound();
+    }
+}
+
+
+// INTERFACE
+//
+// An interface is like a contract.
+//
+// It says:
+// "Any class that implements me must provide
+// these required methods."
+interface Animal {
+
+    // This declares the method.
+    //
+    // It says classes implementing Animal
+    // need a makeSound() method.
+    void makeSound();
+}
+
+
+// Dog agrees to follow the Animal interface.
+//
+// IMPORTANT:
+//
+// Classes EXTEND classes.
+//
+// Classes IMPLEMENT interfaces.
+class Dog implements Animal {
+
+    // Since Dog implements Animal,
+    // Dog provides the required makeSound() method.
+    public void makeSound() {
+
+        System.out.println("Woof!");
+    }
+}
+```
+
+### MEMORIZE
+
+```java
+class Child extends Parent
+```
+
+means:
+
+```text
+INHERITANCE
+```
+
+While:
+
+```java
+class Dog implements Animal
+```
+
+means:
+
+```text
+INTERFACE
+```
+
+---
+
+# 7. ComparableRectangle — EXTREMELY IMPORTANT
+
+```java
+public class ComparableExample {
+
+    public static void main(String[] args) {
+
+        // Create the first rectangle.
+        //
+        // width = 5
+        // height = 10
+        //
+        // area = 50
+        ComparableRectangle r1 =
+            new ComparableRectangle(5, 10);
+
+
+        // Create second rectangle.
+        //
+        // width = 2
+        // height = 4
+        //
+        // area = 8
+        ComparableRectangle r2 =
+            new ComparableRectangle(2, 4);
+
+
+        // Compare r1 with r2.
+        //
+        // Since we are calling:
+        //
+        // r1.compareTo(r2)
+        //
+        // inside compareTo():
+        //
+        // this = r1
+        // r    = r2
+        //
+        // r1 area = 50
+        // r2 area = 8
+        //
+        // Since 50 > 8,
+        // compareTo() returns a positive number.
+        int result = r1.compareTo(r2);
+
+
+        // Positive means r1 is considered larger.
+        if (result > 0) {
+
+            System.out.println("r1 is larger");
+        }
+
+
+        // Negative means r1 is considered smaller.
+        else if (result < 0) {
+
+            System.out.println("r1 is smaller");
+        }
+
+
+        // Zero means they are considered equal.
+        else {
+
+            System.out.println("They are equal");
+        }
+    }
+}
+
+
+// Regular Rectangle class.
+class Rectangle {
+
+    private double width;
+    private double height;
+
+
+    public Rectangle(double width, double height) {
+
+        this.width = width;
+        this.height = height;
+    }
+
+
+    public double getArea() {
+
+        return width * height;
+    }
+}
+
+
+// This class does TWO important things:
+//
+// 1. extends Rectangle
+//
+//    This means ComparableRectangle IS-A Rectangle
+//    and inherits accessible Rectangle methods.
+//
+// 2. implements Comparable<ComparableRectangle>
+//
+//    This means ComparableRectangle objects
+//    can be compared with each other.
+class ComparableRectangle
+    extends Rectangle
+    implements Comparable<ComparableRectangle> {
+
+
+    public ComparableRectangle(
+        double width,
+        double height
+    ) {
+
+        // ComparableRectangle inherited from Rectangle.
+        //
+        // Rectangle has this constructor:
+        //
+        // Rectangle(double width, double height)
+        //
+        // super(width, height) calls that
+        // parent constructor.
+        super(width, height);
+    }
+
+
+    // Comparable requires us to provide
+    // the compareTo() method.
+    //
+    // We are deciding to compare Rectangles
+    // based on AREA.
+    public int compareTo(ComparableRectangle r) {
+
+
+        // this.getArea()
+        //
+        // means:
+        //
+        // get the area of the object
+        // that called compareTo().
+        //
+        // Example:
+        //
+        // r1.compareTo(r2)
+        //
+        // this.getArea() = r1's area
+        //
+        // r.getArea() = r2's area
+        if (this.getArea() > r.getArea()) {
+
+            // Positive means THIS object is larger.
+            return 1;
+        }
+
+
+        else if (this.getArea() < r.getArea()) {
+
+            // Negative means THIS object is smaller.
+            return -1;
+        }
+
+
+        else {
+
+            // Zero means they are considered equal.
+            return 0;
+        }
+    }
+}
+```
+
+### `compareTo()` Cheat Sheet
+
+```text
+r1.compareTo(r2)
+
+this = r1
+r    = r2
+
+
+return negative
+→ r1 is smaller
+
+
+return 0
+→ r1 and r2 are equal
+
+
+return positive
+→ r1 is larger
+```
+
+---
+
+# 8. Arrays — Sort, Search, toString
+
+```java
+// We import Arrays because methods such as
+// Arrays.sort(), Arrays.toString(), and
+// Arrays.binarySearch() belong to java.util.Arrays.
+import java.util.Arrays;
+
+
+public class ArrayExample {
+
+    public static void main(String[] args) {
+
+        // Create an integer array containing 5 values.
+        //
+        // Indexes:
+        //
+        //        0   1   2   3   4
+        //
+        //       [50][10][40][20][30]
+        int[] numbers = {50, 10, 40, 20, 30};
+
+
+        // Arrays.toString() converts the array
+        // into an easy-to-read String.
+        System.out.println(
+            "Original: " + Arrays.toString(numbers)
+        );
+
+
+        // Sort the array from smallest to largest.
+        //
+        // BEFORE:
+        //
+        // [50, 10, 40, 20, 30]
+        //
+        // AFTER:
+        //
+        // [10, 20, 30, 40, 50]
+        Arrays.sort(numbers);
+
+
+        System.out.println(
+            "Sorted: " + Arrays.toString(numbers)
+        );
+
+
+        // binarySearch() searches for a value.
+        //
+        // IMPORTANT:
+        //
+        // The array should be sorted before
+        // using binarySearch().
+        //
+        // Our sorted array:
+        //
+        // index:   0   1   2   3   4
+        //
+        // value: [10][20][30][40][50]
+        //
+        // Therefore 30 is located at index 2.
+        int index =
+            Arrays.binarySearch(numbers, 30);
+
+
+        System.out.println(
+            "30 is at index: " + index
+        );
+
+
+        // .length tells us how many elements
+        // the array can hold.
+        //
+        // There are 5 elements.
+        System.out.println(
+            "Array length: " + numbers.length
+        );
+
+
+        // IMPORTANT:
+        //
+        // length = 5
+        //
+        // indexes = 0, 1, 2, 3, 4
+        //
+        // Therefore:
+        //
+        // last index = length - 1
+        //
+        //            = 5 - 1
+        //
+        //            = 4
+        System.out.println(
+            "Last index: " + (numbers.length - 1)
+        );
+    }
+}
+```
+
+---
+
+# 9. Loop Through an Array
+
+```java
+public class ArrayLoopExample {
+
+    public static void main(String[] args) {
+
+        // Create an array containing five integers.
+        int[] numbers = {
+            10, 20, 30, 40, 50
+        };
+
+
+        // Start i at 0 because arrays begin
+        // at index 0.
+        //
+        // Continue while:
+        //
+        // i < numbers.length
+        //
+        // numbers.length = 5
+        //
+        // Therefore i will become:
+        //
+        // 0
+        // 1
+        // 2
+        // 3
+        // 4
+        //
+        // It stops before i becomes 5.
+        for (
+            int i = 0;
+            i < numbers.length;
+            i++
+        ) {
+
+            // numbers[i] accesses the element
+            // at the current index.
+            //
+            // When i = 0:
+            //
+            // numbers[0] = 10
+            //
+            // When i = 1:
+            //
+            // numbers[1] = 20
+            System.out.println(
+                "Index " + i +
+                " contains " + numbers[i]
+            );
+        }
+
+
+        // NEVER normally use:
+        //
+        // i <= numbers.length
+        //
+        // because if length = 5,
+        // that allows i to become 5.
+        //
+        // But index 5 does NOT exist.
+        //
+        // Valid indexes are only:
+        //
+        // 0, 1, 2, 3, 4
+    }
+}
+```
+
+---
+
+# 10. Two-Dimensional Array
+
+```java
+public class TwoDimensionalArrayExample {
+
+    public static void main(String[] args) {
+
+        // A two-dimensional array can be thought
+        // of as rows and columns.
+        //
+        // This array looks like:
+        //
+        //            COLUMNS
+        //
+        //             0  1  2
+        //
+        // ROW 0      [1][2][3]
+        //
+        // ROW 1      [4][5][6]
+        //
+        // ROW 2      [7][8][9]
+        int[][] numbers = {
+
+            {1, 2, 3},
+
+            {4, 5, 6},
+
+            {7, 8, 9}
+        };
+
+
+        // numbers.length gives the number of ROWS.
+        //
+        // There are 3 rows.
+        System.out.println(
+            "Rows: " + numbers.length
+        );
+
+
+        // numbers[0] means:
+        //
+        // "give me row 0"
+        //
+        // numbers[0].length therefore tells us
+        // how many elements/columns are in row 0.
+        //
+        // There are 3.
+        System.out.println(
+            "Columns: " + numbers[0].length
+        );
+
+
+        // Access one specific value.
+        //
+        // numbers[1][2]
+        //
+        // FIRST number = row
+        // SECOND number = column
+        //
+        // Row 1:
+        //
+        // [4][5][6]
+        //
+        // Column 2 contains:
+        //
+        // 6
+        System.out.println(
+            "numbers[1][2] = " + numbers[1][2]
+        );
+
+
+        // OUTER LOOP controls the ROW.
+        for (
+            int row = 0;
+            row < numbers.length;
+            row++
+        ) {
+
+
+            // INNER LOOP controls the COLUMN.
+            //
+            // numbers[row].length means:
+            //
+            // number of columns in the CURRENT row.
+            for (
+                int column = 0;
+                column < numbers[row].length;
+                column++
+            ) {
+
+
+                // Access the value at the
+                // current row and column.
+                System.out.print(
+                    numbers[row][column] + " "
+                );
+            }
+
+
+            // After finishing one entire row,
+            // move to the next line.
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+# 11. Passing a 2D Array to a Method
+
+```java
+public class PassTwoDimensionalArray {
+
+    public static void main(String[] args) {
+
+        // Create a 2D array.
+        int[][] numbers = {
+
+            {1, 2, 3},
+
+            {4, 5, 6},
+
+            {7, 8, 9}
+        };
+
+
+        // Call printArray().
+        //
+        // We are passing the numbers array
+        // into the method.
+        printArray(numbers);
+    }
+
+
+    // This method RECEIVES a 2D integer array.
+    //
+    // int[][] tells Java the parameter
+    // must refer to a 2D int array.
+    //
+    // array is the parameter name.
+    public static void printArray(int[][] array) {
+
+
+        // Loop through every row.
+        for (
+            int row = 0;
+            row < array.length;
+            row++
+        ) {
+
+
+            // Loop through every column
+            // inside the current row.
+            for (
+                int column = 0;
+                column < array[row].length;
+                column++
+            ) {
+
+
+                // Print the current value.
+                System.out.print(
+                    array[row][column] + " "
+                );
+            }
+
+
+            // Start a new line after each row.
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+# 12. EVERYTHING COMBINED — STUDY THIS ONE
+
+This combines:
+
+* Class
+* Object
+* Data fields
+* Constructor
+* `private`
+* `this`
+* Inheritance
+* `extends`
+* Abstract class
+* Abstract method
+* `super`
+* Interface
+* `implements`
+* `Comparable`
+* `compareTo()`
+
+```java
+public class Test {
+
+    public static void main(String[] args) {
+
+        // Create r1.
+        //
+        // Width = 5
+        // Height = 4
+        //
+        // Area = 5 * 4 = 20
+        ComparableRectangle r1 =
+            new ComparableRectangle(5, 4);
+
+
+        // Create r2.
+        //
+        // Width = 2
+        // Height = 3
+        //
+        // Area = 2 * 3 = 6
+        ComparableRectangle r2 =
+            new ComparableRectangle(2, 3);
+
+
+        // getArea() originally comes from Rectangle.
+        //
+        // ComparableRectangle inherits it because
+        // ComparableRectangle extends Rectangle.
+        System.out.println(
+            "r1 area = " + r1.getArea()
+        );
+
+
+        System.out.println(
+            "r2 area = " + r2.getArea()
+        );
+
+
+        // Compare r1 with r2.
+        //
+        // Inside compareTo:
+        //
+        // this = r1
+        // r = r2
+        //
+        // 20 > 6
+        //
+        // Therefore compareTo returns 1.
+        System.out.println(
+            "Comparison = " + r1.compareTo(r2)
+        );
+    }
+}
+
+
+// ABSTRACT SUPERCLASS
+//
+// This class provides the general idea
+// of a geometric object.
+//
+// We do not want to create generic
+// GeometricObject objects directly.
+abstract class GeometricObject {
+
+
+    // Abstract method.
+    //
+    // There is NO body.
+    //
+    // Every concrete subclass must provide
+    // an implementation of getArea().
+    public abstract double getArea();
+}
+
+
+// Rectangle inherits from GeometricObject.
+//
+// This creates an IS-A relationship:
+//
+// Rectangle IS-A GeometricObject.
+class Rectangle extends GeometricObject {
+
+
+    // Private Rectangle data fields.
+    private double width;
+    private double height;
+
+
+    // Rectangle constructor.
+    public Rectangle(
+        double width,
+        double height
+    ) {
+
+        // Store the parameter values
+        // inside this Rectangle object.
+        this.width = width;
+        this.height = height;
+    }
+
+
+    // GeometricObject required us to
+    // provide getArea().
+    //
+    // Rectangle's area formula is:
+    //
+    // width * height
+    public double getArea() {
+
+        return width * height;
+    }
+}
+
+
+// ComparableRectangle inherits from Rectangle.
+//
+// Therefore:
+//
+// ComparableRectangle IS-A Rectangle
+//
+// Since Rectangle IS-A GeometricObject:
+//
+// ComparableRectangle is ALSO
+// a GeometricObject.
+//
+// It ALSO implements Comparable,
+// allowing two ComparableRectangle
+// objects to be compared.
+class ComparableRectangle
+    extends Rectangle
+    implements Comparable<ComparableRectangle> {
+
+
+    // Constructor.
+    public ComparableRectangle(
+        double width,
+        double height
+    ) {
+
+
+        // Rectangle already has a constructor
+        // that knows how to store width and height.
+        //
+        // super means the parent/superclass.
+        //
+        // The superclass here is Rectangle.
+        //
+        // Therefore:
+        //
+        // super(width, height)
+        //
+        // calls:
+        //
+        // Rectangle(width, height)
+        super(width, height);
+    }
+
+
+    // Comparable requires compareTo().
+    //
+    // The parameter r represents another
+    // ComparableRectangle.
+    public int compareTo(
+        ComparableRectangle r
+    ) {
+
+
+        // Example:
+        //
+        // r1.compareTo(r2)
+        //
+        // this = r1
+        // r    = r2
+        //
+        // this.getArea() = r1's area
+        // r.getArea()    = r2's area
+
+
+        if (this.getArea() > r.getArea()) {
+
+            // Positive:
+            //
+            // THIS object is larger.
+            return 1;
+        }
+
+
+        else if (
+            this.getArea() < r.getArea()
+        ) {
+
+            // Negative:
+            //
+            // THIS object is smaller.
+            return -1;
+        }
+
+
+        else {
+
+            // Zero:
+            //
+            // Both objects are considered equal
+            // according to our comparison.
+            return 0;
+        }
+    }
+}
+```
+
+# LAST-MINUTE CODE READING GUIDE
+
+When the quiz gives you code, go **line by line** and ask:
+
+```text
+private double width;
+
+→ DATA FIELD
+→ private means directly accessible only inside its class
+
+
+Rectangle(double width)
+
+→ CONSTRUCTOR
+→ same name as class
+→ no return type
+
+
+this.width = width;
+
+→ this.width = object's field
+→ width = parameter
+
+
+new Rectangle(5, 4);
+
+→ CREATE OBJECT
+→ calls constructor
+
+
+class Rectangle extends GeometricObject
+
+→ INHERITANCE
+→ Rectangle = subclass
+→ GeometricObject = superclass
+→ Rectangle IS-A GeometricObject
+
+
+class Example implements Comparable<Example>
+
+→ INTERFACE
+→ class promises to provide compareTo()
+
+
+super(width, height);
+
+→ calls SUPERCLASS constructor
+
+
+this.getArea()
+
+→ call getArea() on CURRENT object
+
+
+r.getArea()
+
+→ call getArea() on object referenced by r
+
+
+r1.compareTo(r2)
+
+→ this = r1
+→ parameter r = r2
+
+
+compareTo returns negative
+
+→ this object is smaller
+
+
+compareTo returns 0
+
+→ considered equal
+
+
+compareTo returns positive
+
+→ this object is larger
+
+
+int[] numbers = new int[10];
+
+→ array has 10 slots
+→ indexes 0 through 9
+
+
+numbers.length
+
+→ number of elements
+
+
+numbers.length - 1
+
+→ last valid index
+
+
+numbers[row][column]
+
+→ access a 2D array
+
+
+numbers.length
+
+→ number of rows in 2D array
+
+
+numbers[row].length
+
+→ number of columns in that row
+```
